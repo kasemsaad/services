@@ -1,11 +1,16 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 const form = reactive({
   username: "",
   password: "",
 });
 
+const showPassword = ref(false); // Track password visibility
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value; // Toggle visibility
+};
 </script>
 
 <template>
@@ -18,11 +23,11 @@ const form = reactive({
 
       <!-- Right Section -->
       <div class="w-full lg:w-1/2 px-6 lg:px-12 text-right">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4 text-center relative">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center relative">
            <span> مرحباً بعودتك</span>
-           <img src="../../assets/icons/waving.png" class="absolute bottom-0 sm:left-52 lg:left-20 md:left-56" width="40" alt="">
+           <img src="../../assets/icons/waving.png" class="absolute bottom-0 sm:left-20 lg:left-16 md:left-56" width="40" alt=""/>
         </h1>
-        <p dir="rtl" class="text-lg text-gray-600 mb-8 text-center">
+        <p dir="rtl" class="text-sm text-gray-600 mb-8 text-center">
             ادخل بياناتك لمتابعة اخر تطورات وظائفك واجد الفرص المميزة.
         </p>
       
@@ -33,27 +38,31 @@ const form = reactive({
               id="username"
               type="text"
               v-model="form.username"
-              class="border-b border-gray-300 focus:outline-none focus:border-gray-500 py-2">
+              class="border-b focus:border-[#94D401] border-gray-300 focus:outline-none py-2">
           </div>
 
           <div class="flex flex-col text-right relative">
             <label for="password" class="mb-1 text-gray-600">كلمة المرور</label>
-            <i class="pi pi-eye text-left absolute bottom-4"></i>
+            <!-- Eye icon with dynamic classes -->
+            <i
+              :class="['pi', showPassword ? 'pi-eye-slash' : 'pi-eye', 'text-left', 'absolute', 'bottom-4', 'cursor-pointer']"
+              @click="togglePasswordVisibility"
+            ></i>
             <input
               id="password"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               v-model="form.password"
-              class="border-b border-gray-300 focus:outline-none focus:border-gray-500 py-2">
+              class="border-b focus:border-[#94D401] border-gray-300 focus:outline-none py-2">
           </div>
           <!-- Remember Me -->
           <div class="flex justify-between items-center space-x-2 space-x-reverse text-right" dir="rtl">
               <div>
                 <input
-              id="agreeToTerms"
-              type="checkbox"
-              v-model="form.agreeToTerms"
-              class="h-4 w-4 border-gray-300 rounded"/> 
-              <span > تذكرني؟</span>
+                  id="agreeToTerms"
+                  type="checkbox"
+                  v-model="form.agreeToTerms"
+                  class="h-4 w-4 border-gray-300 rounded"/> 
+                <span> تذكرني؟</span>
               </div>
               <span class="forget-password">نسيت كلمة المرور؟</span>
           </div>
@@ -85,5 +94,4 @@ button {
 .link, .forget-password {
     color: #94D401;
 }
-
 </style>

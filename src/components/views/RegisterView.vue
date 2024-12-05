@@ -1,5 +1,5 @@
 <script setup>
-  import { reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 
 const form = reactive({
   name: "",
@@ -13,212 +13,171 @@ const form = reactive({
 });
 
 const isFreelancer = ref(true);
+const showPassword = ref(false);
+const showConfirmPassword = ref(false);
 
 const selectUserType = (type) => {
   isFreelancer.value = type === "freelancer";
 };
 
-</script>
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
 
+const toggleConfirmPasswordVisibility = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
+};
+</script>
 <template>
-  <div class="registeration mb-12">
-    <div class="container">
-      <div class="left-section sm:hidden lg:block md:block">
-        <img src="../../assets/images/register-img.png" alt="">
+  <div class="mt-12 mb-20">
+    <div class="container mx-auto flex flex-wrap lg:flex-nowrap gap-4">
+      <div class="hidden lg:block w-[500px]">
+        <img src="../../assets/images/register-img.png" alt="Register">
       </div>
-      <div class="right-section">
-      <h1>كن جزءًا من عائلة جوولانسر</h1>
-      <p>انضم إلى عائلة جوولانسر واكتشف العديد من الفرص المميزة لعملك وشركتك.</p>
-      <div class="user-type-buttons">
-        <button :class="{ active: isFreelancer }" @click="selectUserType('freelancer')">مستقل</button>
-        <button :class="{ active: !isFreelancer }" @click="selectUserType('client')">صاحب عمل</button>
-      </div>
-        <!-- Registration Form -->
-        <form @submit.prevent="" class="space-y-4 pt-4 max-w-md text-center">
-        <div class="flex flex-col text-right  ">
-          <label for="name" class="mb-1">الاسم</label>
-          <input
-            id="name"
-            type="text"
-            v-model="form.name"
-            class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0"
-          />
-        </div>
-        <div class="flex flex-col text-right">
-          <label for="username" class="mb-1">اسم المستخدم</label>
-          <input
-            id="username"
-            type="text"
-            v-model="form.username"
-            class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0"
-          />
-        </div>
-        <div class="flex flex-col text-right">
-          <label for="email" class="mb-1">البريد الإلكتروني</label>
-          <input
-            id="email"
-            type="email"
-            v-model="form.email"
-            class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0"
-          />
-        </div>
-        <div class="flex flex-col text-right">
-          <label for="phone" class="mb-1">رقم الهاتف</label>
-          <div class="flex gap-2">
-            <select name="" id="" class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0">
-              <option
-              id="phoneCode"
-              type="text"   
-            >+20</option>
-            </select>
-            <input
-              id="phoneNumber"
-              type="text"
-              v-model="form.phoneNumber"
-              class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0 flex-1"
-            />
+      <div class="flex-1.5 p-4 text-right">
+        <h1 class="text-3xl font-bold text-[#333] mb-5 text-center">كن جزءًا من عائلة جوولانسر</h1>
+        <p dir="rtl" class="msg text-gray-500 text-center mb-6">
+          انضم إلى عائلة جوولانسر واكتشف العديد من الفرص المميزة لعملك وشركتك.
+        </p>
+        <div class="relative bg-[#222222] rounded-full mb-6">
+          <!-- Slider -->
+          <div
+            class="absolute inset-0 bg-[#222222] transition-all duration-300 ease-in-out rounded-full"
+            :style="{ transform: isFreelancer ? 'translateX(0%)' : 'translateX(100%)' }"
+          ></div>
+          <div class="flex justify-between p-1.5 relative z-10">
+            <button
+              class="py-3 px-20 text-sm text-white rounded-full transition-all"
+              :class="{ 'bg-[#94D401]': isFreelancer }"
+              @click="selectUserType('freelancer')"
+            >
+              مستقل
+            </button>
+            <button
+              class="py-3 px-20 text-sm text-white rounded-full transition-all"
+              :class="{ 'bg-[#94D401]': !isFreelancer }"
+              @click="selectUserType('client')"
+            >
+              صاحب عمل
+            </button>
           </div>
         </div>
-        <div class="password">
+        <!-- Registration Form -->
+        <form @submit.prevent="" class="space-y-6 max-w-md mx-auto">
           <div class="flex flex-col text-right">
-          <label for="password" class="mb-1">كلمة المرور</label>
-          <input
-            id="password"
-            type="password"
-            v-model="form.password"
-            class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0"
-          />
-        </div>
-        <div class="flex flex-col text-right">
-          <label for="confirmPassword" class="mb-1">تأكيد كلمة المرور</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            v-model="form.confirmPassword"
-            class="border outline-none border-b-1 border-t-0 border-l-0 border-r-0"
-          />
-        </div>
-        </div>
-        <div class="flex items-center space-x-2 space-x-reverse text-right">
+            <label for="name" class="mb-1 text-[#D0D0C8]">الاسم</label>
+            <input
+              id="name"
+              type="text"
+              v-model="form.name"
+              class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+            />
+          </div>
+          <div class="flex flex-col text-right">
+            <label for="username" class="mb-1 text-[#D0D0C8]">اسم المستخدم</label>
+            <input
+              id="username"
+              type="text"
+              v-model="form.username"
+              class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+            />
+          </div>
+          <div class="flex flex-col text-right">
+            <label for="email" class="mb-1 text-[#D0D0C8]">البريد الإلكتروني</label>
+            <input
+              id="email"
+              type="email"
+              v-model="form.email"
+              class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+            />
+          </div>
+          <div class="flex flex-col text-right">
+            <label for="phone" class="mb-1 text-[#D0D0C8]">رقم الهاتف</label>
+            <div class="flex gap-2">
+              <select
+                id="phoneCode"
+                v-model="form.phoneCode"
+                class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+              >
+                <option value="+20">+20</option>
+              </select>
+              <input
+                id="phoneNumber"
+                type="text"
+                v-model="form.phoneNumber"
+                class="flex-1 border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col text-right relative">
+              <label for="password" class="mb-1 text-[#D0D0C8]">كلمة المرور</label>
+              <input
+                id="password"
+                :type="showPassword ? 'text' : 'password'"
+                v-model="form.password"
+                class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+              />
+              <i
+                :class="['pi', showPassword ? 'pi-eye-slash' : 'pi-eye', 'text-left', 'absolute', 'bottom-4', 'cursor-pointer']"
+                @click="togglePasswordVisibility"
+              ></i>
+            </div>
+            <div class="flex flex-col text-right relative">
+              <label for="confirmPassword" class="mb-1 text-[#D0D0C8]">تأكيد كلمة المرور</label>
+              <input
+                id="confirmPassword"
+                :type="showConfirmPassword ? 'text' : 'password'"
+                v-model="form.confirmPassword"
+                class="border-b border-[#D0D0C8] focus:outline-none focus:border-[#94D401]"
+              />
+              <i
+                :class="['pi', showConfirmPassword ? 'pi-eye-slash' : 'pi-eye', 'text-left', 'absolute', 'bottom-4', 'cursor-pointer']"
+                @click="toggleConfirmPasswordVisibility"
+              ></i>
+            </div>
+          </div>
+          <div dir="rtl" class="flex items-center space-x-2 space-x-reverse">
             <input
               id="agreeToTerms"
               type="checkbox"
               v-model="form.agreeToTerms"
-              class="h-4 w-4 border-gray-300 rounded"
+              class="h-4 w-4 border-gray-300 rounded focus:ring-[#94D401]"
             />
-            <label for="agreeToTerms" class="text-sm text-black">
-              أقبل كافة <a href="#" class="text-black underline">الشروط والأحكام</a> <a href="#" class="text-black underline">وسياسة الخصوصية.</a>
+            <label for="agreeToTerms" class="text-sm">
+              أقبل كافة <a href="#" class="underline text-black">الشروط والأحكام</a> و
+              <a href="#" class="underline text-black">سياسة الخصوصية.</a>
             </label>
           </div>
-        <div class="pt-1">
-          <button type="submit" class="submit-button">إنشاء حساب</button>
-        </div>
+          <div class="pt-1">
+            <button type="submit" class="w-full py-3 text-lg font-semibold text-white bg-[#222222] rounded-full">
+              إنشاء حساب
+            </button>
+          </div>
         </form>
-      <p class="login-link">لديك حساب بالفعل؟ <router-link to="/login" class="underline link">تسجيل الدخول</router-link></p>
-    </div>
+        <p class="text-center mt-6 text-sm">
+          لديك حساب بالفعل؟ <router-link to="/login" class="text-[#94D401] underline">تسجيل الدخول</router-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .registeration {
-    margin-top: 50px;
-  }
-  .container {
-    width: 95% !important;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
+  .msg {
+    font-size: 13px;
   }
 
-  .container .left-section {
-    width: 500px;
+  .relative {
+    position: relative;
+    overflow: hidden;
   }
-
-.right-section {
-  flex: 1.5;
-  padding: 1rem;
-  direction: rtl;
-}
-
-h1 {
-  color: #333;
-  font-weight: bold;
-  font-size: 36px;
-}
-.right-section p {
-  font-size: 16px;
-}
-.link {
-  color: #94D401;
-}
-
-.right-section h1, .right-section p {
-  text-align: center;
-}
-.user-type-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 12px 0;
-  background-color: #222222;
-  border-radius: 100px;
-  padding: 4px 0px;
-  font-size: 18px;
-  max-width: 420px;
-}
-
-.user-type-buttons button {
-  padding: 7px 73px;
-  /* width: 249px;
-  height: 50px; */
-  border: none;
-  cursor: pointer;
-  border-radius: 100px;
-  color: white;
-  outline: none;
-}
-
-.user-type-buttons .active {
-  background-color: #94D401;
-  color: white;
-}
-
-input {
-  border-bottom: 1px solid #D0D0C8;
-}
-.phone-group {
-  display: flex;
-}
-
-.phone-group input {
-  margin-right: 0.5rem;
-}
-label:not(:last-child) {
-  color: #D0D0C8;
-}
-.submit-button {
-  border: none;
-  cursor: pointer;
-  background-color: #222222;
-  color: white;
-  border-radius: 100px;
-  padding: 6px 0px;
-  font-size: 18px;
-  width: 448px;
-  display: block;
-  margin-top: 20px;
   
-}
-.password {
-  display: flex;
-  justify-content: space-between;
-}
-.login-link {
-  text-align: center;
-  margin-top: 12px;
-}
-.login-link a {
-  color: #94D401;
-  text-decoration: underline;
-}
+  .absolute {
+    position: absolute;
+  }
+  
+  .z-10 {
+    z-index: 10;
+  }
 </style>

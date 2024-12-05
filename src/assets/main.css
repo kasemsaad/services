@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: 'Montserrat-Arabic';
+    src: url('@/assets/fonts/Montserrat-Arabic Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.line {
+    border-bottom: 2px solid #94D401;
+    display: inline-block;
+    width: 300px;
+    height: 2px;
+}

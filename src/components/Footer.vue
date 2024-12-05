@@ -1,6 +1,6 @@
 <template>
-  <footer class="footer text-white py-10">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-right">
+  <footer class="footer mb-0  w-full text-white py-10">
+    <div class="footer-container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-right">
       <div>
         <div class="border-t-8 socialmedia-border w-full mb-4"></div>
         <div class="flex justify-center md:justify-start gap-4">
@@ -25,12 +25,12 @@
       <div>
         <ul class="space-y-4">
           <li>
-            <strong>تواصل معنا</strong> <span class="bullet bullet-gray"></span>
+            <span class="text-xs font-extralight mb-4 inline-block">تواصل معنا</span> <span class="bullet bullet-gray"></span>
             <p>+20 1000000000</p>
             <p>info@goolancer.com</p>
           </li>
           <li>
-            <strong>زور مقرنا</strong> <span class="bullet bullet-gray"></span>
+            <strong class="text-xs font-extralight mb-4 inline-block">زور مقرنا</strong> <span class="bullet bullet-gray"></span>
             <p dir="rtl">456 اسم الشارع، اسم الحي، المدينة</p>
             <p dir="rtl">10 ص - 6 م</p>
             <p>يومياً /</p>
@@ -41,7 +41,7 @@
       <div>
         <ul class="space-y-4">
           <li>
-            <strong>وظائفنا</strong> <span class="bullet"></span>
+            <span class="text-xs font-extralight mb-4 inline-block">وظائفنا</span> <span class="bullet"></span>
             <ul>
               <li>تصميم جرافيك</li>
               <li>صناعة محتوى</li>
@@ -50,7 +50,7 @@
             </ul>
           </li>
           <li>
-            <strong>عن منصتنا</strong> <span class="bullet bullet-gray"></span>
+            <span class="text-xs font-extralight mb-4 inline-block">عن منصتنا</span> <span class="bullet bullet-gray"></span>
             <ul>
               <li>من نحن</li>
               <li>تواصل معنا</li>
@@ -62,17 +62,19 @@
     </div>
 
     <!-- Footer Bottom -->
-    <div dir="rtl" class="container mx-auto mt-8 flex justify-between text-center text-gray-400">
-      <div class="brand">
-        <img src="../assets/images/logo-footer.png" alt="">
-        <p>جميع الحقوق محفوظة جوولانسر © 2025</p>
+    <div dir="rtl" class="footer-container mx-auto pb-2 pt-24 text-right">
+      <img src="../assets/images/logo-footer.png" alt="">
+    </div>
+    <div dir="rtl" class="footer-bottom mx-auto flex justify-between text-center text-gray-400">
+      <div>
+        <p class="text-xs text-[#D0D0C8]">جميع الحقوق محفوظة جوولانسر © 2025</p>
       </div>
       <div class="privacy">
-        <a href="#" class="hover:text-white">سياسة الخصوصية</a>
+        <a href="#" class="hover:text-white text-xs text-[#D0D0C8]">سياسة الخصوصية</a>
       </div>
       <p>
-        <a href="#" class="hover:text-white ml-2 active">العربية</a>
-        <a href="#" class="hover:text-white">Eng</a>
+        <a href="#" class="hover:text-white ml-2 active text-sm text-[#D0D0C8]">العربية</a>
+        <a href="#" class="hover:text-white text-xs text-[#D0D0C8]">Eng</a>
       </p>
     </div>
   </footer>
@@ -82,6 +84,9 @@
     .footer {
         background-color: #222222;
         color: #D0D0C8;
+    }
+    .footer-bottom, .footer-container {
+      width: 90%;
     }
     .socialmedia-border {
         border-top: 8px solid #D0D0C8;
@@ -97,9 +102,6 @@
         background-color: #D0D0C8;
         width: 8px;
         height: 8px;
-    }
-    strong {
-        font-size: 14px;
     }
     .active {
       color: white;
